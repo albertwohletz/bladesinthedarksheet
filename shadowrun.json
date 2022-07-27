@@ -1,0 +1,176 @@
+{
+  "Street Samurai": {
+    "description": "A noble and honorable fighter",
+    "two_starting_ability": "Skirmish",
+    "one_starting_ability": "Command",
+    "contacts": [
+      "Doc, A street doctor",
+      "Comrade Pirate, A fixer",
+      "Bomb Voyage, A terrorist",
+      "Smasher, a cold killer",
+      "Doge, A bounty Hunter"
+    ],
+    "karma": [
+      "You addressed a challenge with violence or coercion.",
+      "You upheld your personal code of honor at a cost.",
+      "You dueled someone worthy."
+    ],
+    "items": [
+      { "name": "Fine Melee Weapon", "load": 1, "note": "An Ares monofilament sword, Katana, or a stun baton."},
+      { "name": "Fine long rifle", "load": 2, "note": "A sniper rifle or assault rifle."},
+      { "name": "Light Armor", "load": 1, "note": "Lighter than normal armor" },
+      { "name": "Restraints", "load": 1, "note": "Plasteel security restraints" },
+      { "name": "Kamakaze Vial", "load": 0, "note": "Kamikaze is a tailored amphetamine combat drug. In moderate doses, kamikaze can give users an edge, somewhat equalizing the odds when unaugmented (either biologically or cybernetically) individuals face augmented opponents in combat. As use continues and addiction grows, the individual requires larger doses, and adverse side effects begin to manifest. Large doses can cause excitement, tremors, momentary euphoria and dilated pupils. Excess doses (bordering on overdose level) cause anxiety, hallucinations and uncontrolled muscular movements. Even higher dosages lead to death." },
+      { "name": "Your personal Code", "load": 0, "note": "Your personal street code." }
+    ],
+    "abilities": [
+      "Cyborg: You start with one piece of cyberware.  +1d when rolling for surgical complications when installing new cyberware.",
+      "Not to be trifled with: You can push yourself to do one of the following: perform a feat of physical force that verges on the superhuman—engage a small gang on equal footing in close combat",
+      "Bodyguard: When you protect someone, resist with +1d. When you take harm, clear 1 stress.",
+      "Imposing: When you gather info to anticipate possible threats in the current situation, you get +1 effect. When you dissuade someone from escalating to physical violence by commanding them, you have potency.",
+      "Predator: Take +1d to rolls against weakened or vulnerable targets. Whenever you gather information on a weakness or vulnerability, the worst you can get is a 4/5 result.",
+      "Follow Through: When you take harm from someone, you learn about them and they become more susceptible to you. Immediately ask 1 question from gather information and take +1d against them.",
+      "Quick Healer:  If you’re wounded at the beginning of downtime, mark +3 segments on your healing clock. When you push yourself to ignore wound penalties, you take only 1 stress (not 2).",
+      "Tough as Nails: Penalties from harm are one level less severe (though level 4 harm is still fatal)."
+    ]
+  },
+  "Rigger": {
+	"description": "A vehicle savant and thrillseeker.",
+    "abilities": [
+      "Drone Creator: When you invent or build a drone, take +1 result level to your roll. You begin with one special drone already.",
+      "In Control: When you control a drone you are not distracted when in AR (no dice penalty).  You can push yourself to take an action with your physical body while being in VR.",
+      "Ace: You can Finesse a vehicle to takeoff, control, or land it—regardless of its means of propulsion. You gain potency when you make difficult maneuvers while piloting a vehicle.",
+      "Precise: You may expend your special armor to resist a consequence from mechanical failure, or to push yourself when inventing, crafting, or destroying something mechanical.",
+      "Jury Rig: When you Engineer to repair or alter a device, the work is much faster than it should be and you don’t need all the parts or tools.",
+      "Junkyard Hunter: When you acquire parts or equipment during downtime, you may either gain two assets, or one asset at +1 quality.",
+      "I can fix you: It does not cost cred to repair or rebuild a damaged drone.  You can expend special armor to resist a consequence that causes damage to a drone.",
+      "Eidetic Memory: When you’ve witnessed something destroyed or disassembled, take +1d to making a schematic for it and crafting it.  You gain potency on actions to it or copies as well."
+    ]
+  },
+  "Ghost": {
+    "description": "A noble and honorable fighter",
+    "two_starting_ability": "Skirmish",
+    "one_starting_ability": "Command",
+    "contacts": [
+    ],
+    "karma": [
+		"",
+		"",
+		""
+    ],
+    "items": [
+      { "name": "", "load": 1, "note": ""}
+    ],
+    "abilities": [
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	]
+  },
+  "Decker": {
+    "description": "A noble and honorable fighter",
+    "two_starting_ability": "Skirmish",
+    "one_starting_ability": "Command",
+    "contacts": [
+    ],
+    "karma": [
+		"",
+		"",
+		""
+    ],
+    "items": [
+      { "name": "", "load": 1, "note": ""}
+    ],
+    "abilities": [
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	]
+  },
+  "Face": {
+    "description": "A noble and honorable fighter",
+    "two_starting_ability": "Skirmish",
+    "one_starting_ability": "Command",
+    "contacts": [
+    ],
+    "karma": [
+		"",
+		"",
+		""
+    ],
+    "items": [
+      { "name": "", "load": 1, "note": ""}
+    ],
+    "abilities": [
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	]
+  },
+  "Mage": {
+    "description": "A noble and honorable fighter",
+    "two_starting_ability": "Skirmish",
+    "one_starting_ability": "Command",
+    "contacts": [
+    ],
+    "karma": [
+		"",
+		"",
+		""
+    ],
+    "items": [
+      { "name": "", "load": 1, "note": ""}
+    ],
+    "abilities": [
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	]
+  },
+  "Adept": {
+    "description": "A noble and honorable fighter",
+    "two_starting_ability": "Skirmish",
+    "one_starting_ability": "Command",
+    "contacts": [
+    ],
+    "karma": [
+		"",
+		"",
+		""
+    ],
+    "items": [
+      { "name": "", "load": 1, "note": ""}
+    ],
+    "abilities": [
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	]
+  }
+}
+
