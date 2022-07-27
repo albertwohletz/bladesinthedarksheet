@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Fondamento&display=swap" rel="stylesheet">
+<style>
+h1, h2, h3, h4, h5, h6, p, button {
+  font-family: 'Eagle Lake';
+}
+input, select, textarea {
+  font-family: Fondamento;
+}
+.roll1, .roll2, .roll3 {
+  color: red;
+}
+.roll4, .roll5 {
+  color: orange;
+}
+.roll6, .roll7 {
+  color: darkgreen;
+}
+.error {
+  color: red;
+}
+</style>
+<h1>Dice Roller</h1>
+<div id="attribute-roller">
+  <select id="character">
+    <option value="" hidden disabled selected>Character</option>
+  </select>
+  <select id="attribute">
+    <option value="" hidden disabled selected>Attribute</option>
+    <option value="Insight">Insight</option>
+    <option value="Hunt">🔫 Hunt</option>
+    <option value="Interface">👨‍💻 Interface</option>
+    <option value="Survey">👀 Survey</option>
+    <option value="Rig">🔧 Rig</option>
+    <option value="Prowess">Prowess</option>
+    <option value="Finesse">🤸 Finesse</option>
+    <option value="Prowl">🤫 Prowl</option>
+    <option value="Skirmish">🤺 Skirmish</option>
+    <option value="Wreck">💥 Wreck</option>
+    <option value="Resolve">Resolve</option>
+    <option value="Analyze">🔎 Analyze</option>
+    <option value="Command">📣 Command</option>
+    <option value="Consort">👔 Consort</option>
+    <option value="Sway">👄 Sway</option>
+  </select>
+  <br>
+  <div>
+    Bonus Dice:
+    <select id="bonus-dice">
+      <option value="-1">-1d</option>
+      <option value="0" selected>0</option>
+      <option value="1">+1d</option>
+      <option value="2">+2d</option>
+      <option value="3">+3d</option>
+      <option value="4">+4d</option>
+      <option value="5">+5d</option>
+    </select>
+  </div>
+  <div>
+    <input type="checkbox" id="assist" name="assist" onclick="computeBonusDice()">
+    <label for="assist">Assisted by Teammate (+1d)</label>
+  </div>
+  <div>
+    <input type="checkbox" id="push" name="push" onclick="computeBonusDice()">
+    <label for="push">Push Yourself (+1d for +2 Stress)</label>
+  </div>
+  <div>
+    <input type="checkbox" id="devil" name="devil" onclick="computeBonusDice()">
+    <label for="devil">Devil's Bargain (+1d)</label>
+  </div>
+    <div>
+    <input type="checkbox" id="harm" name="harm" onclick="computeBonusDice()">
+    <label for="harm">L2 Harm (-1d)</label>
+  </div>
+
+  <p>
+    <button class="primary" onclick="rollAttribute()">Roll</button>
+    <button onclick="reset()">Reset</button>
+  </p>
+
+</div> <!--AttributeRoller -->
+
+
+<div id='engagement-roller' style="display:none">
+
+  <div>
+    <input type="checkbox" class="checkbox_positive" name="q1" onclick="computeEngagementDice()">
+    <label for="q1">Particularly Bold or Daring? (+1d)</label>
+    <br>
+    <input type="checkbox" class="checkbox_negative" name="q2" onclick="computeEngagementDice()">
+    <label for="q2">Overly complex? (-1d)</label>
+  </div>
+
+  <div>
+    <input type="checkbox" class="checkbox_positive" name="q3" onclick="computeEngagementDice()">
+    <label for="q3">Plan's detail Expose a vulnerability? (+1d)</label>
+    <br>
+    <input type="checkbox" class="checkbox_negative" name="q4" onclick="computeEngagementDice()">
+    <label for="q4">Target is resistant to plan's detail? (-1d)</label>
+  </div>
+
+  <div>
+    <input type="checkbox" class="checkbox_positive" name="q5" onclick="computeEngagementDice()">
+    <label for="q5">Friends or contacts provide aid? (+1d)</label>
+    <br>
+    <input type="checkbox" class="checkbox_negative" name="q6" onclick="computeEngagementDice()">
+    <label for="q6">Enemies or rivals interfere? (-1d)</label>
+  </div>
+
+  <div>
+    <input type="checkbox" class="checkbox_positive" name="q7" onclick="computeEngagementDice()">
+    <label for="q7">Additional Advantage? (+1d)</label>
+    <br>
+    <input type="checkbox" class="checkbox_negative" name="q8" onclick="computeEngagementDice()">
+    <label for="q8">Additional Disadvantage? (-1d)</label>
+  </div>
+
+  Engagement Dice: <span id="engagement_dice"></span>
+  <button class="primary" onclick="rollEngagement()">Roll</button>
+  <button onclick="reset()">Reset</button>
+</div>
+
+<p id="roll-results"></p>
+
+<hr>
+
+<script>
+const LOADER_HTML = '<div class="dice-container"><div class="dice"><div class="front"><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="back"><span></span></div><div class="right"><span></span><span></span><span></span><span></span><span></span></div><div class="left"><span></span><span></span></div><div class="top"><span></span><span></span><span></span></div><div class="bottom"><span></span><span></span><span></span><span></span></div></div></div>';
+
+function computeBonusDice() {
+  var dice = 0;
+  if (document.querySelector("#assist").checked) {
+    dice = dice + 1;
+  }
+  if (document.querySelector("#push").checked) {
+    dice = dice + 1;
+  }
+  if (document.querySelector("#devil").checked) {
+    dice = dice + 1;
+  }
+  if (document.querySelector("#harm").checked) {
+    dice = dice - 1;
+  }
+  // -1d is the first index, so the selected index is dice+1
+  document.querySelector('#bonus-dice').selectedIndex = dice+1;
+  return dice;
+}
+
+function computeEngagementDice() {
+  var dice =  document.querySelectorAll('input[class=checkbox_positive]:checked').length;
+  dice = dice - document.querySelectorAll('input[class=checkbox_negative]:checked').length;
+  document.querySelector('#engagement_dice').innerHTML = dice;
+  return dice;
+}
+
+function initialize(data) {
+  loadCharacters(data.characters, data.sheetId);
+  if (data.selectedAttribute) {
+    document.querySelector("#attribute").value = data.selectedAttribute;
+  }
+}
+function loadCharacters(characters, selectedSheetId) {
+  const characterList = document.querySelector('#character');
+  characterList.options.length = 1;
+  for (const character of characters) {
+    const characterOption = document.createElement('option');
+    characterOption.value = character.sheetId;
+    characterOption.text = character.name;
+    if (character.sheetId == selectedSheetId) {
+      characterOption.selected = 'selected';
+    }
+    characterList.options.add(characterOption);
+  }
+}
+function rollAttribute() {
+  clearAllResults();
+  document.querySelector('#roll-results').innerHTML = LOADER_HTML;
+  const characterSheetId = document.querySelector('#character').value;
+  const attribute = document.querySelector('#attribute').value;
+  const bonusDice = parseInt(document.querySelector('#bonus-dice').value, 10);
+  console.log('characterSheetId='+characterSheetId);
+  google.script.run.withSuccessHandler(displayRoll).rollAttribute(attribute, bonusDice, characterSheetId);
+}
+function rollEngagement() {
+  clearAllResults();
+  document.querySelector('#roll-results').innerHTML = LOADER_HTML;
+  google.script.run.withSuccessHandler(displayRoll).rollAndLog(computeEngagementDice(), "Engagement Roll");
+}
+function displayRoll(roll) {
+  document.querySelector('#dice-sound').play();
+  let rollsString = '';
+  let firstDie;
+  for (const die of roll.dice) {
+    if (rollsString.length > 0) {
+      rollsString += ', '
+    }
+    const isCrit = !roll.keepLowest && firstDie == 6 && die == 6;
+    if (firstDie == undefined || isCrit) {
+      firstDie = isCrit ? 7 : die;
+      rollsString += '<strong class="roll' + die + '">' + die + '</strong>';
+    } else {
+      rollsString += die;
+    }
+  }
+  let header = '';
+  if (roll.sheetId && roll.character) {
+    header += '<strong>Character:</strong> <a href="javascript:openSheet(' + roll.sheetId + ')">' + roll.character + '</a><br>';
+  } else if (roll.character) {
+    header += '<strong>Character:</strong> ' + roll.character + '<br>';
+  }
+  header += '<strong>' + (roll.attribute || '# Dice') + ':</strong> ';
+  header += roll.keepLowest ? '0' : roll.dice.length;
+  header += 'd6<br>';
+  header += '<strong>Rolls:</strong> ' + rollsString + '<br>';
+  header += '<strong>Result:</strong> <span class="roll' + roll.resultInt + '">' + roll.result + '</span>';
+  document.querySelector('#roll-results').innerHTML = header;
+}
+function openSheet(sheetId) {
+  google.script.run.openSheet(sheetId);
+}
+function reset() {
+  document.querySelector('#attribute').selectedIndex = 0;
+  document.querySelector('#bonus-dice').selectedIndex = 0;
+}
+
+function clearAllResults() {
+  document.querySelector('#roll-results').innerText = '';
+}
+</script>
+
+<audio id="dice-sound" src="https://stabai.github.io/dice.mp3">
+
+<style>
+/* Loading spinner */
+
+.dice-container {
+    position: relative;
+    top: 20px;
+    height: 100px;
+    margin: auto;
+    width: 60px;
+}
+
+.add-keyframe {
+  -webkit-animation-name: rotate;
+          animation-name: rotate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-name: opacity;
+          animation-name: opacity;
+}
+
+.dice {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: rotateX(0deg) rotateY(0deg) translateX(0);
+          transform: rotateX(0deg) rotateY(0deg) translateX(0);
+  -webkit-animation-name: rotate;
+          animation-name: rotate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+.dice > div {
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  background: black;
+  border-radius: 5px;
+}
+.dice span {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+.dice .front {
+  -webkit-transform: rotateY(0deg) translateZ(30px);
+          transform: rotateY(0deg) translateZ(30px);
+}
+.dice .front span:nth-child(1) {
+  top: 10px;
+  left: 12px;
+}
+.dice .front span:nth-child(2) {
+  top: 10px;
+  right: 12px;
+}
+.dice .front span:nth-child(3) {
+  top: 26px;
+  left: 12px;
+}
+.dice .front span:nth-child(4) {
+  top: 26px;
+  right: 12px;
+}
+.dice .front span:nth-child(5) {
+  bottom: 10px;
+  left: 12px;
+}
+.dice .front span:nth-child(6) {
+  bottom: 10px;
+  right: 12px;
+}
+.dice .back {
+  -webkit-transform: rotateX(180deg) translateZ(30px);
+          transform: rotateX(180deg) translateZ(30px);
+}
+.dice .back span {
+  top: 26px;
+  left: 26px;
+}
+.dice .right {
+  -webkit-transform: rotateY(90deg) translateZ(30px);
+          transform: rotateY(90deg) translateZ(30px);
+}
+.dice .right span:nth-child(1) {
+  top: 12px;
+  left: 12px;
+}
+.dice .right span:nth-child(2) {
+  top: 12px;
+  right: 12px;
+}
+.dice .right span:nth-child(3) {
+  top: 26px;
+  left: 26px;
+}
+.dice .right span:nth-child(4) {
+  bottom: 12px;
+  left: 12px;
+}
+.dice .right span:nth-child(5) {
+  bottom: 12px;
+  right: 12px;
+}
+.dice .left {
+  -webkit-transform: rotateY(-90deg) translateZ(30px);
+          transform: rotateY(-90deg) translateZ(30px);
+}
+.dice .left span:nth-child(1) {
+  top: 12px;
+  right: 12px;
+}
+.dice .left span:nth-child(2) {
+  bottom: 12px;
+  left: 12px;
+}
+.dice .top {
+  -webkit-transform: rotateX(90deg) translateZ(30px);
+          transform: rotateX(90deg) translateZ(30px);
+}
+.dice .top span:nth-child(1) {
+  top: 12px;
+  right: 12px;
+}
+.dice .top span:nth-child(2) {
+  bottom: 12px;
+  left: 12px;
+}
+.dice .top span:nth-child(3) {
+  bottom: 26px;
+  left: 26px;
+}
+.dice .bottom {
+  -webkit-transform: rotateX(-90deg) translateZ(30px);
+          transform: rotateX(-90deg) translateZ(30px);
+}
+.dice .bottom span:nth-child(1) {
+  top: 12px;
+  right: 12px;
+}
+.dice .bottom span:nth-child(2) {
+  top: 12px;
+  left: 12px;
+}
+.dice .bottom span:nth-child(3) {
+  bottom: 12px;
+  left: 12px;
+}
+.dice .bottom span:nth-child(4) {
+  bottom: 12px;
+  right: 12px;
+}
+
+.button {
+  position: fixed;
+  bottom: 20px;
+  background: #f76939;
+  padding: 20px 40px;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+.button:hover {
+  background: #e35525;
+}
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+  }
+  35% {
+    -webkit-transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+  }
+  45% {
+    -webkit-transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+  }
+  65% {
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+  }
+  75% {
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+  }
+  35% {
+    -webkit-transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+  }
+  45% {
+    -webkit-transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(-180deg) rotateY(-90deg) rotateZ(0deg) translateX(0);
+  }
+  65% {
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+  }
+  75% {
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(-360deg) translateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+            transform: rotateX(90deg) rotateY(360deg) rotateZ(0deg) translateX(0);
+  }
+}
+
+</style>
