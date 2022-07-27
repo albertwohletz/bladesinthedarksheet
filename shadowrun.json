@@ -35,7 +35,20 @@
     ]
   },
   "Rigger": {
-	"description": "A vehicle savant and thrillseeker.",
+    "description": "A vehicle savant and thrillseeker.",
+    "two_starting_ability": "Rig",
+    "one_starting_ability": "Finesse",
+    "contacts": [
+		"Drain-O, A bioengineer"
+    ],
+    "karma": [
+		"Addressed a challenge with technical skill or inventions.",
+		"You performed a vehicular stunt.",
+		"You found a use for something discarded."
+    ],
+    "items": [
+      { "name": "", "load": 1, "note": ""}
+    ],
     "abilities": [
       "Drone Creator: When you invent or build a drone, take +1 result level to your roll. You begin with one special drone already.",
       "In Control: When you control a drone you are not distracted when in AR (no dice penalty).  You can push yourself to take an action with your physical body while being in VR.",
@@ -48,128 +61,143 @@
     ]
   },
   "Ghost": {
-    "description": "A noble and honorable fighter",
-    "two_starting_ability": "Skirmish",
-    "one_starting_ability": "Command",
+    "description": "A deadly and stealthy infiltrator",
+    "two_starting_ability": "Prowl",
+    "one_starting_ability": "Hunt",
     "contacts": [
     ],
     "karma": [
-		"",
-		"",
-		""
+		"You addressed a challenge with tracking or stealth.",
+		"You landed the killing blow on a named enemy.",
+		"You exacted justice on someone who harmed you or someone you care about."
+
     ],
     "items": [
-      { "name": "", "load": 1, "note": ""}
+	  { "name": "Fine Chameleon Suit", "load": 2, "note": "This full-body suit has a smart ruthenium polymer coating supported by a sensor suite; the technology allows it to scan its surroundings and replicate the images at the proper perspectives."},
+	  { "name": "Fine Grapple Gun", "load": 1, "note": "This gun can shoot a grappling hook and attached rope. It comes equipped with an internal winch to pull back the grapple (or pull up small loads). Micro rope can support a weight of up to 100 kilograms; standard and stealth ropes can support a weight of up to 400 kilograms."},
+	  { "name": "Fine surveillance gear", "load": 1, "note": "A clandestine surveillance kit equipped with an impressive array of signal capture devices (signal scanner, wireless data taps, tracer tags, etc.) and long-range sensors for recording audio and video. The fine quality of this kit may increase the effect of your investigative actions when you use it."},
+	  { "name": "Fine Collapsible Sniper Rifle", "load": 1, "note": "Ares Desert Strike"},
+	  { "name": "Tranquilizer Rounds", "load": 0, "note": "Small darts that inject the target with an incapacitating tranquilizer."},
+	  { "name": "Chloroform", "load": 1, "note": "A colorless liquid that quickly evaporates into gas.  Causes unconciousness when inhaled."},
+	  { "name": "A dose of Long Haul", "load": 0, "note": "A drug that alleviates the need for sleep for three days.  Users will pass out for an entire day when its effects wear off."}
     ],
     "abilities": [
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		""
+		"Infiltrator: You are not affected by quality or Tier when you bypass security measures.",
+		"Deadeye: You can push yourself to do one of the following: make a ranged attack at an extreme distance beyond what’s normal for the weapon—use the environment to attempt a trick shot without penalty.",
+		"Focused: You may expend your special armor to resist a consequence of surprise or mental harm (fear, confusion, losing track of someone), or to push yourself for ranged combat or tracking.",
+		"Gun Control: You can draw and reload firearms quickly, regardless of weapon type. You gain potency when unleashing a barrage of rapid fire.",
+		"Ambush: When you attack from hiding or spring a trap, you get +1d.",
+		"Cover Fire: If you set up someone with shoot or provide covering fire, they gain potency on their next action.",
+		"Ghost: You may expend your special armor to resist a consequence from detection or security measures, or to push yourself for a feat of evasion or stealth.",
+		"Pattern Recognition: When you gather information regarding entry points or exploitable habitual patterns, you have potency."
 	]
   },
   "Decker": {
-    "description": "A noble and honorable fighter",
-    "two_starting_ability": "Skirmish",
-    "one_starting_ability": "Command",
+    "description": "A shrewd and cocky hacker",
+    "two_starting_ability": "Interface",
+    "one_starting_ability": "Analyze",
     "contacts": [
     ],
     "karma": [
-		"",
-		"",
-		""
+		"Address a challenge with information or software.",
+		"You found something hidden in a system.",
+		"You hindered those that perpetuate societal power structures."
     ],
     "items": [
-      { "name": "", "load": 1, "note": ""}
+      { "name": "", "load": 1, "note": ""},
+	  { "name": "Fine Cyberdeck", "load": 2, "note": "A powerful portable microcomputing device with enough computational power to render the virtual interface of the Matrix as well as run illegal programs to subvert Matrix protocols."},
+	  { "name": "Blueprints", "load": 0, "note": "Access to a database of useful architectural projections and city plans. Feel free to specify which plans you’ve loaded on your device when you choose this item on a run."},
+	  { "name": "Portable VR kit", "load": 1, "note": "This specialty-made chair collapses into a suitcase form and allows the user to enter Virtual Reality (necessary for Cold Sim or Hot Sim).  It takes about a minute to assemble/unassemble."},
+	  { "name": "Signal Jammer", "load": 1, "note": "This device floods the airwaves with electromagnetic jamming signals to block out wireless and radio communication.  It can affect a spherical or conal area."}
     ],
     "abilities": [
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		""
+		"“I’m in”: You gain potency when finding or accessing protected data. When you successfully interface with a system, you can ask one question about the network.",
+		"Programmer: When you invent or craft a creation with software features, you get +1 result level to your roll (a 1-3 becomes a 4/5, etc.). You begin with one special design already known.",
+		"Search Protocol:  You are always aware of online devices in your presence, including cyberware. Take +1d when you gather info using technology.",
+		"Data Analyst: During downtime, you get two ticks to distribute among any long term project clocks that involve investigation.",
+		"Work from Home: Due to your careful planning, during downtime, you may give yourself or another crew member +1 downtime activity.",
+		"Mess with the best: You may expend your special armor to resist the consequences of hacking, or to push yourself when hacking or gathering info electronically",
+		"Overclocked: When you push yourself, you may spend +1 stress (3 stress total) to gain both +1 effect and +1d instead of one or the other.",
+		"Foresight: Two times per score you can assist a teammate without paying stress. Tell us how you prepared for this."
 	]
   },
   "Face": {
-    "description": "A noble and honorable fighter",
-    "two_starting_ability": "Skirmish",
-    "one_starting_ability": "Command",
+    "description": "A smooth and well connected criminal",
+    "two_starting_ability": "Consort",
+    "one_starting_ability": "Sway",
     "contacts": [
     ],
     "karma": [
-		"",
-		"",
-		""
+		"You addressed a challenge with influence or conspiracy.",
+		"You defended your claims or tried to get more.",
+		"You resolved a debt or favor."
     ],
     "items": [
-      { "name": "", "load": 1, "note": ""}
+		{ "name": "A fine fake SIN", "load": 0, "note": "The same as a normal fake SIN but with +1 tier."},
+		{ "name": "Privacy generator", "load": 1, "note": "A small tabletop device that allows the user to have a short face-to-face conversation free of audio surveillance and remote listening."},
+		{ "name": "Fine outfit", "load": 1, "note": "A suit of clothes that marks you as either an important executive, soldier of rank, or undisputed leader of a gang, with all the appropriate badges, medals, and accoutrement.  If you’re carrying this item as a second outfit to change into, it counts as 1 load."},
+		{ "name": "Fine nightlife subscription", "load": 0, "note": "Prepaid credit usable at popular clubs and restaurants across the city, potent both in its ability to intoxicate and its ability to impress. Does your fixer take care of veiling the records—or maybe one of your contacts or close friends?"},
+		{ "name": "Street drugs", "load": 1, "note": "A pocketful of up to three uses of illegal drugs."},
+		{ "name": "An entourage", "load": 0, "note": "Three to five bodyguards, fans, and retainers who are loyal only to you. They have quality equal to your Tier when they can help (they are quality 0 otherwise)."}
     ],
-    "abilities": [
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		""
+	"abilities": [
+		"Mr. J is my Chummer: You are adept at getting more money from Mr. Johnson.  At the end of each score you earn +2 Stash or +1 Rep.",
+		"Affable: You may expend your special armor to resist a consequence of persuasion or suspicion.  You may also spend it to improve someone’s attitude.",
+		"Connected: During downtime, you get +1 result level when you acquire an asset, reduce heat, or establish a new contact.",
+		"Street Cred: You gain +1d to Network when you gather info on a target for a run. You get +1d to the engagement roll for that operation.",
+		"Linguist: You can understand bits and pieces of any dialect, even those you never learned. You can mark 1 stress to hold a conversation despite language barriers.  You get +1 result when working on a long term project to learn a new language.",
+		"Captivating: You can hold the attention of a bigger group of people than normal. You may Consort with a completely hostile target as if they were a friend.",
+		"Center of Attention: When you engage someone in conversation, it is especially distracting.  Your set up actions provide +1d and +1 effect.  When you Sway a distracted target, take +1d.",
+		"Incorrigible: When you indulge your vice, you may adjust the dice outcome by 1 or 2 (up or down). An ally who joins in your vice may do the same."
 	]
   },
   "Mage": {
-    "description": "A noble and honorable fighter",
-    "two_starting_ability": "Skirmish",
-    "one_starting_ability": "Command",
+    "description": "An arcane adept and scholar",
+    "two_starting_ability": "Magic",
+    "one_starting_ability": "Analyze",
     "contacts": [
     ],
     "karma": [
-		"",
-		"",
-		""
+		"You addressed a challenge with knowledge or magic.",
+		"You found a new source of power or occult knowledge.",
+		"You helped to protect or heal the natural world."
     ],
     "items": [
-      { "name": "", "load": 1, "note": ""}
+	  { "name": "Fine arcane reagents", "load": 1, "note": "A pinch of desecrated grave dirt. Prayer beads and bones. A smattering of awakened organic material (leaves, feathers, hair, etc.). In what strange way do they quickly deteriorate upon use? From which of your friends or contacts do you source these exotic items?"}
     ],
     "abilities": [
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		""
+		"Sorcerer: You know the secret methods to activate metaplanar energies through your body to cast spells. You can Analyze a spell formula to summon a supernatural effect. You begin with two spells already learned.",
+		"Mentor Spirit or Totem: You have bonded with a mentor spirit or totem that may aid you.  You also gain an additional karma trigger: Embodied or protected the ideals of your mentor spirit.",
+		"Summoner:  You may summon spiritual denizens of the metaplanes.  You are not affected by tier or quality when attempting to banish another spirit.",
+		"Warded: You can expend your special armor to resist an arcane consequence, or to push yourself when you employ or contend with arcane forces.",
+		"Enchanter: When you invent or craft creations with arcane feature take +1 result level  to your roll. You begin with one arcane design already known.",
+		"Ritualist: When you design or craft a ritual take +1 result level to your roll. You begin with one arcane design already known.",
+		"Astral Projection: You may project your consciousness into the astral plane to “see” a small room across the district as if it were nearby. Mark 2 stress when you project, plus 1 stress for each extra feature: project further (across the sprawl, across the country, etc)—you can be seen or heard—it lasts longer (a few minutes, an hour, etc.).",
+		"Assensing:  You are able to view the auras of people around you.  When assessing a subject you can sense the emotional state, health, and location of cyberware implements.  You can also tell whether the subject is Awakened.  You may be able to recognize a subject's aura, regardless of physical disguises or alterations.  You’re always aware of astral entities in your presence. You get +1d to gather info about the arcane by any means."
 	]
   },
   "Adept": {
-    "description": "A noble and honorable fighter",
-    "two_starting_ability": "Skirmish",
-    "one_starting_ability": "Command",
+    "description": "A mystic warrior",
+    "two_starting_ability": "Finesse",
+    "one_starting_ability": "Prowl",
     "contacts": [
     ],
     "karma": [
-		"",
-		"",
-		""
+		"You addressed a challenge with athleticism or mystical power.",
+		"You followed your way or chose a new one.",
+		"You fixed an imbalance in life, nature, or society."
     ],
     "items": [
-      { "name": "", "load": 1, "note": ""}
     ],
-    "abilities": [
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		""
+	"abilities": [
+		"Reflexes: When there’s a question about who acts first, the answer is you (two characters with Reflexes act simultaneously).",
+		"Transmorphic: You can perform significant alterations to your face or skin color, making you difficult to recognize for several minutes. Mark 1 stress when you transmorph, plus 1 stress for each special feature: the change lasts longer (a few hours)—complete appearance change—accompanying voice alteration.",
+		"Astral Fighter: You can infuse your hands, melee weapons, or tools with astral power. You gain potency in combat against astral entities. Choose an elemental energy type (fire, ice, air, or electricity) you wield when you do this.  You may spend a stress to use this energy as a ranged weapon.",
+		"Assensing:  You are able to view the auras of people around you.  When assessing a subject you can sense the emotional state, health, and location of cyberware implements.  You can also tell whether the subject is Awakened.  You may be able to recognize a subject's aura, regardless of physical disguises or alterations.",
+		"Autonomic Control: You can control your vital functions and autonomic response for several minutes. Feign death convincingly, fool a lie detector test, ignore pain, hold your breath with impunity, etc.",
+		"Adept Senses: You may spend a stress to perceive beyond normal limits for several minutes. Detect subtle environmental changes (temperature, frequency, pressure, etc.), sense the presence of danger, become a living lie detector, etc.  You are always aware of when you are being watched.",
+		"Danger Sense: When being ambushed, you gain potency to all actions during a flashback, and your first flashback costs 0 stress.",
+		"Movement Mastery:  Your complete control over your body allows you to move over surfaces that others cannot .  You can run on walls as if they were flat ground.  You do not leave a trace as you move over surfaces, even sand, snow, or dust.  You make no noise through contact with the floor.  You will not trip ground-based motion or pressure sensors power."
 	]
   }
 }
